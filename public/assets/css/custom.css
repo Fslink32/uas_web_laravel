@@ -1,0 +1,50 @@
+.vertical-nav-menu ul{
+	padding: 0.5em 0 0 1.5rem !important;
+}
+.vertical-nav-menu li a{
+	padding: 0 1.5rem 0 35px !important;
+}
+.vertical-nav-menu i.metismenu-state-icon, .vertical-nav-menu i.metismenu-icon{
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: -10px;
+  font-size: 1.3rem;
+}
+.vertical-nav-menu ul > li > a{
+	padding: 0rem 0.5rem !important;
+}
+.vertical-nav-menu ul:before{
+	left: 13px;
+}
+.app-sidebar .app-sidebar__inner{
+	padding:2px 0.5rem 1.5rem;
+}
+.app-page-title{
+	padding:15px;
+	margin: -15px -15px 15px;
+}
+.app-main .app-main__inner{
+	padding:15px 15px 0;
+}
+.card-header{
+	padding:15px;
+}
+.card-body{
+	padding:15px;
+}
+.card-footer{
+	padding:15px;
+}
+.widget-chart{
+	padding: 15px;
+}
+.list-group-item{
+	padding:0.50rem 0.75rem;
+}
+.app-page-title .page-title-icon{
+	margin:0 15px 0 0;
+}
+.table td, .table th{
+	padding:0.35rem;
+}
