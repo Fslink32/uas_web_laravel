@@ -8,7 +8,7 @@
             <div class="carousel-inner" role="listbox">
 
                 <!-- Slide 1 -->
-                <div class="carousel-item active" style="background-image: url(../build/images/pasar1..jpg)">
+                <div class="carousel-item active" style="background-image: url({{ url("/") }}/build/images/pasar1..jpg)">
                     <div class="carousel-container">
                         <div class="container">
                             <h2 class="animate__animated animate__fadeInDown">Selamat datang di <span>Pasar Baru
@@ -22,7 +22,7 @@
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(../build/images/pasar2..jpg)">
+                <div class="carousel-item" style="background-image: url({{ url("/") }}/build/images/pasar2..jpg)">
                     <div class="carousel-container">
                         <div class="container">
                             <h2 class="animate__animated animate__fadeInDown">Pasar Baru Bahagia</h2>
@@ -37,7 +37,7 @@
                 </div>
 
                 <!-- Slide 3 -->
-                <div class="carousel-item" style="background-image: url(../build/images/pasar3..jpg)">
+                <div class="carousel-item" style="background-image: url({{ url("/") }}/build/images/pasar3..jpg)">
                     <div class="carousel-container">
                         <div class="container">
                             <h2 class="animate__animated animate__fadeInDown">Pasar Baru Bahagia</h2>

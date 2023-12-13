@@ -8,11 +8,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="../asset/css/style.css">
+
+	<link rel="stylesheet" href="{{ url("/") }}/asset/css/style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(../build/images/pasar1..jpg);">
+	<body class="img js-fullheight" style="background-image: url({{ url("/") }}/build/images/pasar1..jpg);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
