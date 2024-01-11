@@ -31,8 +31,12 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                ->withSuccess('Signed in');
+            if (Auth()->hasRole('member')) {
+                return redirect()->route('user.home.index');
+            } else {
+                return redirect()->intended('dashboard')
+                    ->withSuccess('Signed in');
+            }
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
@@ -43,9 +47,14 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if (Auth::attempt($credentials, true)) {
-            $request->session()->regenerate(false);
-            return redirect()->route('admin.dashboard.index');
+        $remember = ($request->input('username'))?true:false;
+        if (Auth::attempt($credentials, $remember)) {
+            if (auth()->user()->hasRole('member')) {
+                return redirect()->route('user.home.index');
+            } else {
+                return redirect()->intended('dashboard')
+                    ->withSuccess('Signed in');
+            }
         }
 
         return back()->withErrors([
@@ -53,52 +62,37 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    public function registration($role = null)
+    public function registration()
     {
-        if (empty($role)) {
-            return redirect()->route('login');
-        }
-        $provinsi = WilayahProvinsiModel::get();
-        return view('auth.register', ['role' => $role, 'provinsi' => $provinsi]);
+        return view('auth.register');
     }
 
     public function customRegistration(Request $request)
     {
+        // dd($request->input());
         $is_exist = User::where(['email' => $request->input('email')])->get()->first();
         if ($is_exist) {
             Session::flash('message_error', 'Email sudah terdaftar');
-            return response('Email sudah terdaftar', 409);
+            return view('auth.register');
         }
         $request->validate([
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'provinsi' => 'required',
-            'kabupaten' => 'required',
-            'kecamatan' => 'required',
-            'kelurahan' => 'required',
-            'address' => 'required',
-            'kode_pos' => 'required',
+            'no_hp' => 'required',
+            'username' => 'required',
         ]);
-        // dd($request->input());
         $user = User::create([
-            'name' => explode('@', $request->input('email'))[0],
+            'name' => $request->input('username'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password'), [
                 'rounds' => 8,
             ]),
-            'kode_otp' => mt_rand(1000, 9999),
-            'resend_otp_at' => now(),
-            'provinsi_id' => $request->input('provinsi'),
-            'kabupaten_id' => $request->input('kabupaten'),
-            'kecamatan_id' => $request->input('kecamatan'),
-            'kelurahan_id' => $request->input('kelurahan'),
-            'address' => $request->input('address'),
-            'kode_pos' => $request->input('kode_pos'),
+            'phone' => $request->input('no_hp')
             // Set other additional data fields here
         ]);
-        $user->assignRole($request->input('role'));
+        $user->assignRole('member');
 
-        return  response()->json(['user_id' => $user->id, 'otp' => $user->kode_otp, 'message' => 'Berhasil Register'], 201);
+        return view('auth.login');
     }
 
     public function create(array $data)

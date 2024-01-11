@@ -32,8 +32,10 @@
                 <li><a class="nav-link scrollto " href="{{ route('user.home.harga') }}">Harga</a></li>
                 <li><a class="nav-link scrollto " href="{{ route('user.home.about') }}">About</a></li>
                 <li><a class="getstarted scrollto" href="{{ route('user.home.kontak') }}">Kontak</a></li>
-                @if (Auth::check())
+                @if (auth()->user()->hasRole('superadmin'))
                     <li><a class="getstarted scrollto" href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
+                @elseif(Auth::check())
+                    <li><a class="btn-logout scrollto" href="{{ route('logout') }}">Logout</a></li>
                 @else
                     <li><a class="getstarted scrollto" href="{{ route('login') }}">Login</a></li>
                 @endif

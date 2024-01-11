@@ -42,5 +42,6 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ url('/') }}/assets/css/style.css" rel="stylesheet">
+    <link href="{{ url('/') }}/asset/css/style.css" rel="stylesheet">
 
 </head>
