@@ -40,7 +40,7 @@
                                     </label>
                                 </div>
                                 <div class="w-50 text-md-right">
-                                    <a href="login.php" style="color: #fff">Sudah Punya akun!</a>
+                                    <a href="{{ route('login') }}" style="color: #fff">Sudah Punya akun!</a>
                                 </div>
                             </div>
                         </form>
